@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Eyesome Script';
+    src: url('fonts/EyesomeScript.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'Eyesome Regular';
+    src: url('fonts/EyesomeRegular.otf') format('opentype');
+  }
+}
