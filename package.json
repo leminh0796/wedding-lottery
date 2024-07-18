@@ -3,7 +3,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "predeploy": "vite build",
+    "predeploy": "vite build --mode development",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
