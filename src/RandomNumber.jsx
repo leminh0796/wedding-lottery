@@ -6,6 +6,8 @@ const RandomNumber = () => {
   const [number, setNumber] = useState(0);
   const [finalNumber, setFinalNumber] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [previousNumbers, setPreviousNumbers] = useState(new Set());
+
   const audioRef = useRef(null);
 
   const animationProps = useSpring({
@@ -21,6 +23,7 @@ const RandomNumber = () => {
         if (!start) start = timestamp;
         const progress = timestamp - start;
         if (progress < 15000) {
+        // if (progress < 500) {
           setNumber(Math.floor(Math.random() * 200) + 1);
           requestAnimationFrame(animate);
         } else {
@@ -55,13 +58,17 @@ const RandomNumber = () => {
   const generateRandomNumber = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      const randomNum = Math.floor(Math.random() * 121) + 1;
+      let randomNum;
+      do {
+        randomNum = Math.floor(Math.random() * 121) + 1;
+      } while (previousNumbers.has(randomNum));
+      setPreviousNumbers((prev) => new Set([...prev, randomNum]));
       console.log('Random number:', randomNum);
       setFinalNumber(randomNum);
     }
   };
 
-  const debouncedGenerateRandomNumber = debounce(generateRandomNumber, 1000, {
+  const debouncedGenerateRandomNumber = debounce(generateRandomNumber, 5000, {
     leading: true,
     trailing: false,
   });
