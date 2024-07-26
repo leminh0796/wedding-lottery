@@ -55,7 +55,7 @@ const RandomNumber = () => {
   const generateRandomNumber = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      const randomNum = Math.floor(Math.random() * 120) + 1;
+      const randomNum = Math.floor(Math.random() * 121) + 1;
       console.log('Random number:', randomNum);
       setFinalNumber(randomNum);
     }
